@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* to remove the watermark of the clerk authentication */
+.cl-internal-b3fm6y {
+    display: none !important;
+}
