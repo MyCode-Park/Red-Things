@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import UiLibraryProvider from "@/src/providers/UiLibraryProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import LayoutProvider from "../providers/LayoutProvider";
 
 export const metadata: Metadata = {
   title: "Red Things",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <UiLibraryProvider>{children}</UiLibraryProvider>
+          <UiLibraryProvider>
+            <LayoutProvider>{children}</LayoutProvider>
+          </UiLibraryProvider>
         </body>
       </html>
     </ClerkProvider>
