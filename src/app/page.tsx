@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import { connectDB } from "../config/dbConfig";
 import {
   getMongoDBUserIdOfLoggedInUser,
@@ -13,8 +12,8 @@ export default async function Home() {
   console.log("Mongo ID", mongoUserId);
 
   return (
-    <div className="p-10">
-      <UserButton afterSignOutUrl="/" />
+    <div className="p-3">
+      <h1>Home Page</h1>
     </div>
   );
 }
