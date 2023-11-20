@@ -1,7 +1,7 @@
 import { UserButton } from "@clerk/nextjs";
 import { connectDB } from "../config/dbConfig";
 import {
-  getMongoDBUserLoggedInUser,
+  getMongoDBUserIdOfLoggedInUser,
   handleNewUserRegistration,
 } from "../actions/users";
 connectDB();
@@ -9,7 +9,7 @@ connectDB();
 export default async function Home() {
   await handleNewUserRegistration();
 
-  const mongoUserId = await getMongoDBUserLoggedInUser();
+  const mongoUserId = await getMongoDBUserIdOfLoggedInUser();
   console.log("Mongo ID", mongoUserId);
 
   return (

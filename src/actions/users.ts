@@ -6,6 +6,7 @@ connectDB();
 export const handleNewUserRegistration = async () => {
   try {
     const loggedInUser = await currentUser();
+    // console.log("current user data", loggedInUser);
 
     //    check if user is already registered
     const userExists = await UserModel.findOne({
@@ -20,25 +21,28 @@ export const handleNewUserRegistration = async () => {
       clerkUserId: loggedInUser?.id,
     });
 
+    // console.log("CCN", newUser);
+
     await newUser.save();
     return newUser;
   } catch (error: any) {
-    // throw new Error(error);
-    console.log("err", error);
-    
+    throw new Error(error);
+    // console.log("err", error);
   }
 };
 
-export const getMongoDBUserLoggedInUser = async () => {
+export const getMongoDBUserIdOfLoggedInUser = async () => {
   try {
     const loggedInUser = await currentUser();
     const userInMongoDb = await UserModel.findOne({
-        userName: loggedInUser?.username,
+      clerkUserId: loggedInUser?.id,
     });
-    console.log("log", userInMongoDb);
-    
+    // console.log("log mongo DB", userInMongoDb);
+    // console.log("log loggedInUser DB", loggedInUser);
+
     if (userInMongoDb) return userInMongoDb._id;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
+    // console.log("err", error);
   }
 };
