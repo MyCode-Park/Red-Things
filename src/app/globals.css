@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat+Alternates:wght@600&display=swap'); */ */
+
 /* to remove the watermark of the clerk authentication */
 .cl-internal-b3fm6y {
     display: none !important;
+}
+
+*{
+    font-family: 'Anton', sans-serif !important;
 }
