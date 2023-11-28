@@ -7,19 +7,24 @@ import Tickets from "./Tickets";
 import General from "./general";
 
 function index() {
-  const [activeStep = 0, setActiveStep] = React.useState(0); 
+  const [activeStep = 0, setActiveStep] = React.useState(0);
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <div>
-      <Steps
-        stepNames={["General", "Location & Data", "Media", "Tickets"]}
-        stepsContent={[
-          <General />,
-          <LocationAndDate />,
-          <Media />,
-          <Tickets />,
-        ]}
-        activeStep={activeStep}
-      />
+      <form onSubmit={onSubmit}>
+        <Steps
+          stepNames={["General", "Location & Data", "Media", "Tickets"]}
+          stepsContent={[
+            <General />,
+            <LocationAndDate />,
+            <Media />,
+            <Tickets />,
+          ]}
+          activeStep={activeStep}
+        />
+      </form>
     </div>
   );
 }
