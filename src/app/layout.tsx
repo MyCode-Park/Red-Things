@@ -3,6 +3,7 @@ import "./globals.css";
 import UiLibraryProvider from "@/src/providers/UiLibraryProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import LayoutProvider from "../providers/LayoutProvider";
+import 'remixicon/fonts/remixicon.css'
 
 export const metadata: Metadata = {
   title: "Red Things",
