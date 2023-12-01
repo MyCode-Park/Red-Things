@@ -4,12 +4,20 @@ import Steps from "@/src/components/Steps";
 import LocationAndDate from "./LocationAndDate";
 import Media from "./Media";
 import Tickets from "./Tickets";
-import General from "./general";
+import General from "./General";
 
-function index() {
-  const [activeStep = 0, setActiveStep] = React.useState(0);
+function Even() {
+  const [activeStep = 0, setActiveStep] = React.useState<number>(0);
+  const [event, setEvent] = React.useState<any>(null);
   const onSubmit = (e: any) => {
     e.preventDefault();
+  };
+
+  const commonProps = {
+    event,
+    setEvent,
+    activeStep,
+    setActiveStep,
   };
   return (
     <div>
@@ -17,10 +25,10 @@ function index() {
         <Steps
           stepNames={["General", "Location & Data", "Media", "Tickets"]}
           stepsContent={[
-            <General />,
-            <LocationAndDate />,
-            <Media />,
-            <Tickets />,
+            <General {...commonProps} />,
+            <LocationAndDate {...commonProps} />,
+            <Media {...commonProps} />,
+            <Tickets {...commonProps} />,
           ]}
           activeStep={activeStep}
         />
@@ -29,4 +37,4 @@ function index() {
   );
 }
 
-export default index;
+export default Even;

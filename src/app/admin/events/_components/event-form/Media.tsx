@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { EventFromStepProps } from "./General";
 
-function Media() {
-  return (
-    <div>Media</div>
-  )
+function Media({}: EventFromStepProps) {
+  return <div>Media</div>;
 }
 
-export default Media
+export default Media;

@@ -26,8 +26,8 @@ export const handleNewUserRegistration = async () => {
     await newUser.save();
     return newUser;
   } catch (error: any) {
-    throw new Error(error);
-    // console.log("err", error);
+    // throw new Error(error);
+    console.log("err", error);
   }
 };
 
@@ -42,7 +42,7 @@ export const getMongoDBUserIdOfLoggedInUser = async () => {
 
     if (userInMongoDb) return userInMongoDb._id;
   } catch (error: any) {
-    throw new Error(error);
-    // console.log("err", error);
+    // throw new Error(error);
+    console.log("err", error);
   }
 };

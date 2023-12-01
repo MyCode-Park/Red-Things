@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { EventFromStepProps } from "./General";
 
-function Tickets() {
-  return (
-    <div>Tickets</div>
-  )
+function Tickets({}: EventFromStepProps) {
+  return <div>Tickets</div>;
 }
 
-export default Tickets
+export default Tickets;
