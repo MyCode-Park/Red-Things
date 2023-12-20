@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button, Chip, Input, Textarea } from "@nextui-org/react";
 
 export interface EventFromStepProps {
   event: any;
@@ -14,13 +14,38 @@ function General({
   activeStep,
   setActiveStep,
 }: EventFromStepProps) {
-  const [guest, setguest] = React.useState<string>("");
+  const [guest, setGuest] = React.useState<string>("");
   const getCommonProps = (name: string) => {
     return {
       labelPlacement: "outside",
       value: event?.[name],
       onChange: (e: any) => setEvent({ ...event, [name]: e.target.value }),
     } as any;
+  };
+  const onGuestAdd = () => {
+    const newGuests = [];
+    const commaSeparatedGuests = guest.split(",");
+
+    // if there are more than one guest in the input, then use them
+    if (commaSeparatedGuests.length > 1) {
+      newGuests.push(...commaSeparatedGuests);
+    } else {
+      // add them as a single guest
+      newGuests.push(guest);
+    }
+
+    // check if there are already guest in the event
+    if (event?.newGuests) {
+      newGuests.push(...event.guests);
+    }
+
+    setEvent({ ...event, guests: newGuests });
+    setGuest("");
+  };
+  const onGuestRemove = (guestToRemove: number) => {
+    const newGuests = event?.guest?.filter(
+      (_: string, index: number) => index !== guestToRemove
+    );
   };
   return (
     <div>
@@ -34,8 +59,8 @@ function General({
       <Input
         className="pb-5"
         label="Event Organiser"
-        placeholder="Enter organiser name"
-        {...getCommonProps("organiser")}
+        placeholder="Enter organizer name"
+        {...getCommonProps("organizer")}
       />
 
       <Textarea
@@ -51,9 +76,15 @@ function General({
           value={guest}
           placeholder="Enter your guests"
           labelPlacement="outside"
-          onChange={(e) => setguest(e.target.value)}
+          onChange={(e) => setGuest(e.target.value)}
         />
-        <Button>Add</Button>
+        <Button onClick={onGuestAdd}>Add</Button>
+      </div>
+
+      <div className="flex flex-wrap gap-5">
+        {event?.guests?.map((guest: string, index: number) => (
+          <Chip onClose={() => onGuestRemove(index)}>{guest}</Chip>
+        ))}
       </div>
     </div>
   );
